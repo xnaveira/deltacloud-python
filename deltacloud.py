@@ -92,6 +92,13 @@ class Deltacloud:
       instances.append(Instance(self, instance))
     return instances
 
+  def get_instance(self, instance):
+    doc = self.client.GET(self.entrypoints['instances'] + "/" + instance)[1]
+    instances = []
+    for instance in doc.xpathEval("/instance"):
+      instances.append(Instance(self, instance))
+    return instances
+
   def create_instance(self, image_id, opts):
     opts['image_id'] = image_id
     doc = self.client.POST(self.entrypoints['instances'], opts)[1]
