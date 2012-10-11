@@ -153,7 +153,7 @@ class Instance(Deltacloud):
     if not action:
       return False
     else:
-      if self.deltacloud.client.POST(action[0].xpathEval("@href")[0].content, {})[0]['status'] == '200':
+      if self.deltacloud.client.DELETE(action[0].xpathEval("@href")[0].content)[0]['status'] == '204':
 	return True
       else:
 	return False
